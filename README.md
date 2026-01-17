@@ -1,4 +1,4 @@
-基于原插件UEditor-plus for Typecho 1.0的版本上二次开发：
+基于原插件UEditor-plus for Typecho 1.0的版本上二次开发。
 作者:https://github.com/jian27com/ueditor-plus-typecho
 
 更新内容如下：
