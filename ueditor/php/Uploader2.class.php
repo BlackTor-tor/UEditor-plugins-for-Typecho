@@ -2,6 +2,9 @@
 // load typecho config file
 require_once '../../../../../config.inc.php';
 
+// 引入水印处理类
+require_once 'Watermark.class.php';
+
 switch( Typecho_Widget::widget('Widget_Options')->plugin('UEditor')->cloud )
 {
     case 'upyun':
@@ -288,6 +291,9 @@ class Uploader
                 return false;
             }
         } else { //移动成功
+            // 添加水印（仅对图片文件）
+            $this->addWatermarkIfEnabled();
+            
             if( Typecho_Widget::widget('Widget_Options')->plugin('UEditor')->cloud)
             {
                 $this->upload_to_cloud($this->filePath, $this->fullName);
@@ -297,6 +303,31 @@ class Uploader
                 $this->stateInfo = $this->stateMap[0];
             }
         }
+    }
+
+    /**
+     * 如果开启了水印功能，则为图片添加水印
+     */
+    private function addWatermarkIfEnabled()
+    {
+        // 检查是否开启水印功能
+        $watermarkEnable = Typecho_Widget::widget('Widget_Options')->plugin('UEditor')->watermark_enable;
+        if ($watermarkEnable != '1') {
+            return;
+        }
+        
+        // 检查是否是图片文件
+        $imageTypes = array('.jpg', '.jpeg', '.png', '.gif');
+        if (!in_array(strtolower($this->fileType), $imageTypes)) {
+            return;
+        }
+        
+        // 获取透明度配置
+        $opacity = Typecho_Widget::widget('Widget_Options')->plugin('UEditor')->watermark_opacity ?: 50;
+        
+        // 创建水印处理器并添加水印
+        $watermark = new Watermark(null, intval($opacity));
+        $watermark->addWatermark($this->filePath);
     }
 
     /**

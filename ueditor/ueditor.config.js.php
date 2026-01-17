@@ -39,18 +39,24 @@ $response->setContentType('text/javascript');
         , serverUrl: URL + "php/controller.php"
 
         //工具栏上的所有的功能按钮和下拉框，可以在new编辑器的实例时选择自己需要的从新定义
+        // 已优化：简化工具栏
         , toolbars: [[
+            // 基础操作
             'fullscreen', 'source', '|', 'undo', 'redo', '|',
-            'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', 
-            'rowspacingtop', 'rowspacingbottom', 'lineheight', '|', 'paragraph', 'fontfamily', 'fontsize', '|',
-            'directionalityltr', 'directionalityrtl', 'indent', '|',
-            'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase', '|',
-            'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
-            'simpleupload', 'insertimage', 'emotion', 'scrawl', 'insertvideo', 'attachment', 'map', 'gmap', 'insertframe', 'insertcode', '|',
-            'horizontal', 'date', 'time', 'spechars', 'wordimage', '|',
-            'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', 'charts', '|',
-            'print', 'preview', 'searchreplace', 'help', 'wechat', 'hide', 'downn'
-             ]]
+            // 文本格式
+            'bold', 'italic', 'underline', 'strikethrough', 'removeformat', '|',
+            'forecolor', 'backcolor', '|',
+            // 段落格式
+            'paragraph', 'fontfamily', 'fontsize', '|',
+            'justifyleft', 'justifycenter', 'justifyright', '|',
+            'insertorderedlist', 'insertunorderedlist', 'blockquote', '|',
+            // 插入内容
+            'link', 'unlink', '|',
+            'simpleupload', 'insertimage', 'insertvideo', 'attachment', '|',
+            'insertcode', 'inserttable', 'horizontal', '|',
+            // 其他功能
+            'preview', 'searchreplace', 'help'
+        ]]
         //当鼠标放在工具栏上时显示的tooltip提示,留空支持自动多语言配置，否则以配置值为准
         //,labelMap:{
         //    'anchor':'', 'undo':''
