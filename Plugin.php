@@ -171,7 +171,7 @@ class UEditor_Plugin implements Typecho_Plugin_Interface
         $rootUrl = Typecho_Common::url(__TYPECHO_PLUGIN_DIR__. '/UEditor/ueditor/', $options->siteUrl);
         $codeTheme = $options->plugin('UEditor')->code_theme ?: 'dark';
 
-        // 添加复制按钮样式
+        // 添加复制按钮样式和代码高亮修复
         echo '<style>
         .code-copy-btn {
             position: absolute; top: 8px; right: 8px;
@@ -185,6 +185,43 @@ class UEditor_Plugin implements Typecho_Plugin_Interface
         .code-copy-btn:hover { background: #3c3c3c; color: #fff; }
         .code-copy-btn.copied { background: #4CAF50; color: #fff; }
         .syntaxhighlighter { position: relative; }
+        
+        /* 修复深色主题下代码高亮颜色被覆盖的问题 - 使用更高优先级选择器 */
+        .dark-color .post-content .syntaxhighlighter table td code,
+        .dark-color .syntaxhighlighter code,
+        .syntaxhighlighter table td code { color: inherit !important; }
+        
+        .dark-color .post-content .syntaxhighlighter .keyword,
+        .dark-color .syntaxhighlighter .keyword,
+        .syntaxhighlighter .keyword { color: #569cd6 !important; font-weight: bold !important; }
+        
+        .dark-color .post-content .syntaxhighlighter .string,
+        .dark-color .syntaxhighlighter .string,
+        .syntaxhighlighter .string { color: #ce9178 !important; }
+        
+        .dark-color .post-content .syntaxhighlighter .comments,
+        .dark-color .syntaxhighlighter .comments,
+        .syntaxhighlighter .comments { color: #6a9955 !important; font-style: italic !important; }
+        
+        .dark-color .post-content .syntaxhighlighter .plain,
+        .dark-color .syntaxhighlighter .plain,
+        .syntaxhighlighter .plain { color: #d4d4d4 !important; }
+        
+        .dark-color .post-content .syntaxhighlighter .functions,
+        .dark-color .syntaxhighlighter .functions,
+        .syntaxhighlighter .functions { color: #dcdcaa !important; }
+        
+        .dark-color .post-content .syntaxhighlighter .variable,
+        .dark-color .syntaxhighlighter .variable,
+        .syntaxhighlighter .variable { color: #9cdcfe !important; }
+        
+        .dark-color .post-content .syntaxhighlighter .value,
+        .dark-color .syntaxhighlighter .value,
+        .syntaxhighlighter .value { color: #b5cea8 !important; }
+        
+        .dark-color .post-content .syntaxhighlighter .preprocessor,
+        .dark-color .syntaxhighlighter .preprocessor,
+        .syntaxhighlighter .preprocessor { color: #c586c0 !important; }
         </style>';
 
         echo '<script type="text/javascript" src="'. $rootUrl . 'ueditor.parse.js"></script>';
