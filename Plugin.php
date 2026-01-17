@@ -1,12 +1,12 @@
 <?php
 /**
- * 为Typecho启用UEditor编辑器(支持云存储)
+ * 为Typecho启用UEditor编辑器(支持云存储、代码高亮、复制功能)
  *
- * @package UEditor-plus for Typecho
+ * @package UEditor-plugins-for-Typecho
  * @author BlackTor
  * @version 2.0
  * @link http://www.blacktor.cn
- * DateTime: 2026年1月17日17:22:25
+ * DateTime: 2026年1月17日
  */
 class UEditor_Plugin implements Typecho_Plugin_Interface
 {
